@@ -1,0 +1,581 @@
+*{
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+nav{
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 40px;
+    transition: background-color 0.5s ease-in-out;
+}
+.fondoNav{
+    background-color: #FFFFFF;
+}
+
+.menu{
+ display: flex;
+ width: 300px;
+ justify-content: space-around;
+}
+
+main{
+    padding: 100px 20px;
+}
+
+
+.item-link{
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-shadow: 1px 1px rgb(43, 42, 42), 2px 3px black;
+    border: #000000 solid 1px;
+    padding: 18px;
+    border-radius: 16px;
+    background-color: #3b403c3c;
+}
+
+
+.item-menu:hover{
+    transform: translate(3px, 2px);
+}
+.item-menu:hover > .item-link{
+    text-shadow:0.5px 0.5px #2f3645;
+}
+
+.flexItem{
+ display: block;
+}
+
+/*----- logo ------*/
+/* --- Estilo general del enlace que contiene el SVG --- */
+a svg {
+  display: block;
+  margin: 1rem auto;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+a svg:hover {
+  transform: scale(1.4);
+}
+
+/* --- Colores base (por si no están en los atributos del SVG) --- */
+.mon1 {
+  fill: #767a81de;
+  stroke: #2f3645;
+  stroke-width: 2;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.mon2 {
+  fill: #000000;
+  stroke: #2f3645;
+  stroke-width: 2;
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+/* --- Efecto hover de iluminación del monitor --- */
+a:hover .mon1 {
+  fill: #9ba0a7;
+}
+
+a:hover .mon2 {
+  fill: #101010;
+}
+
+/* --- Simulación de "código" o texto en la pantalla --- */
+.cod {
+  stroke: #00ff66; /* verde tipo terminal */
+  stroke-linecap: round;
+  stroke-width: 2;
+  opacity: 0;
+  animation: aparecer 3s ease-in-out infinite;
+}
+
+/* --- Animación de líneas encendiendo una a una --- */
+@keyframes aparecer {
+  0%, 100% { opacity: 0; }
+  20% { opacity: 1; }
+  40% { opacity: 0.4; }
+  60% { opacity: 1; }
+}
+
+/* --- Variación para que no todas parpadeen igual --- */
+.cod:nth-of-type(1) { animation-delay: 0s; }
+.cod:nth-of-type(2) { animation-delay: 0.5s; }
+.cod:nth-of-type(3) { animation-delay: 1s; }
+.cod:nth-of-type(4) { animation-delay: 1.5s; }
+.cod:nth-of-type(5) { animation-delay: 2s; }
+/* ----------     hoja index      ------------*/
+
+
+header{
+    background: url(imagenes/fondo.jpg) center; 
+    background-size:cover; 
+    min-height: 100vh; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+}
+
+
+
+#header-2{
+    background-image: url(imagenes/historia-programacion.jpg);
+width: 100%;
+    position: relative;
+    height: 70vh;
+}
+#header-3{
+    background-image: url(imagenes/img2.jpg);
+    position: relative;
+    height: 70vh;
+}
+.fondo-azul{
+    background: #4f5146b3;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.espacio-titulo{
+    padding: 40px 10px;
+    transition: color 3s;
+}
+h1{
+    font-weight: 400;
+    font-size: 4rem;
+    color: #eeeeee;
+    text-shadow: 2px 2px #808080, 6px 6px black;
+}
+h2{
+    text-shadow: 1px 1px white,2px 2px gray ;
+    font-size:2.5rem; 
+    font-weight: 500;
+    text-align: center;
+    color: #2f3645
+}
+.titulo-blanco{
+ text-align: center;
+}
+
+.cont-padre{
+    margin: 70px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.card{
+ width: 350px;
+ height: 400px;
+ gap: 10px;
+ background-color: #FFFFFF;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
+ border: #000000 solid 0.1px;
+ border-radius: 16px;
+   opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+  will-change: transform, opacity;
+}
+
+.card:hover {
+    background: #e1e1e1;
+   border:#000000 solid 0.1px;
+   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.img-card{
+ width: 100%;
+ margin: 0px;
+ height: 250px;
+ border-radius: 16px 16px 0 0;
+
+}
+
+.desc-card{
+width: 90%;
+text-align: center;
+height: 30px;
+color:#181D31;
+}
+
+.card.from-left { transform: translateX(-450px) translateY(40px); }
+.card.from-right { transform: translateX(450px) translateY(40px); }
+
+.card.hide-left,
+.card.hide-right {
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+
+
+
+
+
+.boton-ver{
+    padding: 10px ;
+   background-color: #2f3645;
+   color: #ffffff;
+   text-align: center;
+    text-decoration: none;
+    width: 70%;
+    margin-bottom: 20px;
+    transition: color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.boton-ver:hover {
+    box-shadow: inset 400px 0 0 0 #54b3d6;
+    color: white;
+
+}
+
+.boton-ver:active{
+    box-shadow: 0px 0px darkgray;
+    transform: translate(3px, 2px);
+}
+
+
+
+/* ----------     footer      ------------*/
+.logo{
+    height: 70px;
+}
+footer{
+    background: #2f3645;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  70px;
+    color: #f5f5f5;
+}
+
+.footer-left{
+ display: flex;
+ justify-content: space-between;
+ width:250px;
+ height: 50px;
+ align-items: center;
+ 
+}
+
+.titulo-foot{
+    font-size: 16px;
+}
+
+.botonesVideo{
+    box-shadow: 2px 2px #252424;
+    padding: 10px 10px;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    color:#2f3645;
+    font-weight: 300;
+    border: 1px solid #2f3645;
+    
+}
+
+.cont-historia{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+.card-hist{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:80px 50px;
+    gap: 20px;    
+    perspective: 800px;
+    perspective-origin: top;
+    
+}
+.card-text-section{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    visibility:hidden
+    
+}
+.card-hist>img{
+    width: 50%;
+    visibility: hidden;
+}
+
+#cardHist2>.card-text-section{
+    visibility:hidden
+}
+.text-hist{
+    color: #2f3645;
+}
+
+/* ---------- video ------------*/
+.contenedorVideo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0px;
+    gap: 80px;
+
+}
+.barra{
+    background-color:#2f3645;
+    border-radius: 10px;
+    padding: 20px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.botonera{
+    display: flex;
+    gap: 20px;
+}
+.container{
+    padding: 5px;
+    background-color: #2f3645;
+    width: 70%;
+}
+
+#play,#pause{
+   width: 80px;
+}
+
+
+.botonesVideo:active{
+    box-shadow: 0px 0px darkgray;
+    transform: translate(3px, 2px);
+}
+#showTime{
+   
+    padding-right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+   
+
+}
+/* ----------     hoja productos      ------------*/
+
+
+.card-prod{
+ width: 250px;
+ height: 480px;
+}
+.titulo-prod{
+ font-size: 20px;
+}
+
+.img-prod{
+ height: 221px;
+}
+
+
+/* ----------     ponerAPrueba     ------------*/
+.juego{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cajas{
+    display: flex;
+    flex-direction: row;
+    transition: opacity 1s;
+    gap:20px;
+    transform:scale(1);
+    transition:gap 3s ease-out,transform 3s ease;
+}
+.caja{
+    width: 200px;
+    height: 350px;
+    display: flex;
+    border: 2px solid black;
+    background-color: grey;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#seccion-superior>#imagen1{
+    transform: rotate(8deg);
+}
+#seccion-superior>#imagen2{
+    transform: rotate(-10deg);
+}
+#seccion-inferior{
+    height: 200px;
+}
+#seccion-inferior>img{
+    transform: rotate(93deg);
+}
+.cajaHover:hover{
+    background-color: #1d1d1d;
+    
+}
+.cajaHover:hover>p{
+    color: #FFFFFF;
+}
+#seccion-superior{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+#imagen1,#imagen2,#imagen3{
+    width: 200px;
+    height: 350px;
+}
+#imagen1{
+    align-self: flex-start;
+}
+#imagen2{
+    align-self: flex-end;
+}
+
+.reinicio{
+    display: flex;
+    margin: auto;
+    padding: 10px 100px;
+    border: none;
+    border-radius: 0px;
+    background-color:#2f3645;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* Animaciones de aparición (mantienen tu estilo original) */
+@keyframes aparecerDerecha {
+  from {
+    transform: translateX(500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes aparecerIzq {
+  from {
+    transform: translateX(-500px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes aparecer1 {
+  from {
+    transform: translateZ(500px) translateX(-500px);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes opacity1 {
+  from {
+    transform: translateZ(-500px) translateX(500px) rotateY(-45deg);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes aparecer2 {
+  from {
+    transform: translateZ(500px) translateX(500px);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes opacity2 {
+  from {
+    transform: translateZ(-500px) translateX(-500px) rotateY(45deg);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(0px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/* Nuevo: animación de desaparición suave */
+@keyframes desaparecer {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+}
+
+/* Estado base para cards (se ven suaves incluso sin animar) */
+.card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Cuando están visibles (activadas desde JS) */
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+    transform: scale(1.1)
+}
+
+
+
