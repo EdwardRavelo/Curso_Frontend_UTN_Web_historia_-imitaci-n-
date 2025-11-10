@@ -1,78 +1,107 @@
-// ------------------ VIDEO ------------------
+/* Nav scroll */
+function navChange() {
+    let nav = document.querySelector("nav");
+    
+    if (window.scrollY > 100) {
+        nav.classList.add("fondoNav");
+    } else {
+        nav.classList.remove("fondoNav");
+    }
+}
+
+
+/* Video */
 let video = document.querySelector("video");
 let btnPlay = document.getElementById("play");
 let btnPause = document.getElementById("pause");
 let tiempo = document.getElementById("showTime");
-let intervaloTiempo;
 
-// Muestra la duración total (fijo, a modo de ejemplo)
-setTimeout(() => {
+// Duración del video 
+setTimeout(function() {
   tiempo.textContent = "Duración video: 04:41";
 }, 100);
 
-// Función que convierte segundos a formato mm:ss
+// segundos a minutos
 function mostrarTiempo(segundos) {
-  let min = Math.floor(segundos / 60);
+  let minutos = Math.floor(segundos / 60);
   let seg = Math.floor(segundos % 60);
-  if (seg < 10) seg = "0" + seg;
-  if (min < 10) min = "0" + min;
-  return `${min}:${seg}`;
+  
+  // Agregar un 0 adelante si es menor a 10
+  if (seg < 10) {
+    seg = "0" + seg;
+  }
+  if (minutos < 10) {
+    minutos = "0" + minutos;
+  }
+  
+  return minutos + ":" + seg;
 }
 
-// Al hacer clic en Play
-btnPlay.addEventListener("click", () => {
+// ClickPlay
+btnPlay.addEventListener("click", function() {
   video.play();
-  intervaloTiempo = setInterval(() => {
+  
+  // tiempo x segundo
+  setInterval(function() {
     tiempo.textContent = mostrarTiempo(video.currentTime);
   }, 1000);
 });
 
-// Al hacer clic en Pause
-btnPause.addEventListener("click", () => {
+//clickPause
+btnPause.addEventListener("click", function() {
   video.pause();
-  clearInterval(intervaloTiempo);
+});
+
+video.addEventListener("timeupdate", function() {
+  let porcentaje = (video.currentTime / video.duration) * 100;
+  barraProgreso.value = porcentaje;
+});
+
+// barra de progreso
+barraProgreso.addEventListener("click", function(evento) {
+  let posicionClick = evento.offsetX;
+  let anchoTotal = barraProgreso.offsetWidth;
+  let porcentaje = posicionClick / anchoTotal;
+  video.currentTime = porcentaje * video.duration;
 });
 
 
-// ------------------ EFECTO SCROLL (NAV y ANIMACIONES) ------------------
-const nav = document.querySelector("nav");
-const card1 = document.querySelector("#cardHist1");
-const card2 = document.querySelector("#cardHist2");
-const card3 = document.querySelector("#cardHist3");
+// Tarjetas
+let nav = document.querySelector("nav");
+let tarjeta1 = document.querySelector("#cardHist1");
+let tarjeta2 = document.querySelector("#cardHist2");
+let tarjeta3 = document.querySelector("#cardHist3");
 
-window.addEventListener("scroll", () => {
-  let y = window.scrollY;
-  let altoPantalla = window.innerHeight;
-
-  // Cambia color del nav al hacer scroll
-  if (y > altoPantalla * 0.1) {
-    nav.classList.add("fondoNav");
+// Scroll
+window.addEventListener("scroll", function() {
+  let scrollActual = window.scrollY;
+  let altoVentana = window.innerHeight;
+  
+  // Primera tarjeta
+  let posicionTarjeta1 = tarjeta1.getBoundingClientRect().top;
+  
+  // en pantalla
+  if (posicionTarjeta1 < altoVentana - 100) {
+    tarjeta1.classList.add("visible");
   } else {
-    nav.classList.remove("fondoNav");
+    tarjeta1.classList.remove("visible");
   }
-
-  // Distancia de referencia para animaciones
-  let pos1 = card1.offsetTop - altoPantalla * 0.7;
-  let pos2 = card2.offsetTop - altoPantalla * 0.7;
-  let pos3 = card3.offsetTop - altoPantalla * 0.7;
-
-  // Aparecer card 1
-  if (y > pos1 && y < pos2) {
-    card1.querySelector("img").style.animation = "aparecer1 1s ease-out forwards";
-    card1.querySelector("div").style.animation = "opacity1 1s ease-out forwards";
+  
+  // tarjeta 2
+  let posicionTarjeta2 = tarjeta2.getBoundingClientRect().top;
+  
+  if (posicionTarjeta2 < altoVentana - 100) {
+    tarjeta2.classList.add("visible");
+  } else {
+    tarjeta2.classList.remove("visible");
   }
-
-  // Aparecer card 2
-  if (y > pos2 && y < pos3) {
-    card2.querySelector("img").style.animation = "aparecer2 1s ease-out forwards";
-    card2.querySelector("div").style.animation = "opacity2 1s ease-out forwards";
-  }
-
-  // Aparecer card 3
-  if (y > pos3) {
-    card3.querySelector("img").style.animation = "aparecer1 1s ease-out forwards";
-    card3.querySelector("div").style.animation = "opacity1 1s ease-out forwards";
+  
+  // tarjeta 3
+  let posicionTarjeta3 = tarjeta3.getBoundingClientRect().top;
+  
+  if (posicionTarjeta3 < altoVentana - 100) {
+    tarjeta3.classList.add("visible");
+  } else {
+    tarjeta3.classList.remove("visible");
   }
 });
-
-

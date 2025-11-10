@@ -22,6 +22,7 @@ nav{
     padding: 0px 40px;
     transition: background-color 0.5s ease-in-out;
 }
+
 .fondoNav{
     background-color: #FFFFFF;
 }
@@ -37,23 +38,23 @@ main{
 }
 
 
-.item-link{
+.enlace-elemento{
     text-decoration: none;
     font-size: 1.2em;
     font-weight: 500;
     color: #FFFFFF;
-    text-shadow: 1px 1px rgb(43, 42, 42), 2px 3px black;
-    border: #000000 solid 1px;
+    text-shadow: 1px 1px #312e2e, 2px 3px #545353;
+    border: #000000 solid 0px;
     padding: 18px;
     border-radius: 16px;
     background-color: #3b403c3c;
 }
 
 
-.item-menu:hover{
+.elemento-menu:hover{
     transform: translate(3px, 2px);
 }
-.item-menu:hover > .item-link{
+.elemento-menu:hover > .enlace-elemento{
     text-shadow:0.5px 0.5px #2f3645;
 }
 
@@ -71,7 +72,7 @@ a svg {
 }
 
 a svg:hover {
-  transform: scale(1.4);
+  transform: scale(1.3);
 }
 
 /* --- Colores base (por si no están en los atributos del SVG) --- */
@@ -89,7 +90,6 @@ a svg:hover {
   transition: fill 0.4s ease, stroke 0.4s ease;
 }
 
-/* --- Efecto hover de iluminación del monitor --- */
 a:hover .mon1 {
   fill: #9ba0a7;
 }
@@ -98,16 +98,16 @@ a:hover .mon2 {
   fill: #101010;
 }
 
-/* --- Simulación de "código" o texto en la pantalla --- */
+
 .cod {
-  stroke: #00ff66; /* verde tipo terminal */
+  stroke: #00ff66; 
   stroke-linecap: round;
   stroke-width: 2;
   opacity: 0;
   animation: aparecer 3s ease-in-out infinite;
 }
 
-/* --- Animación de líneas encendiendo una a una --- */
+
 @keyframes aparecer {
   0%, 100% { opacity: 0; }
   20% { opacity: 1; }
@@ -115,17 +115,20 @@ a:hover .mon2 {
   60% { opacity: 1; }
 }
 
-/* --- Variación para que no todas parpadeen igual --- */
+
 .cod:nth-of-type(1) { animation-delay: 0s; }
 .cod:nth-of-type(2) { animation-delay: 0.5s; }
 .cod:nth-of-type(3) { animation-delay: 1s; }
 .cod:nth-of-type(4) { animation-delay: 1.5s; }
 .cod:nth-of-type(5) { animation-delay: 2s; }
-/* ----------     hoja index      ------------*/
+
 
 
 header{
-    background: url(imagenes/fondo.jpg) center; 
+    background: 
+    linear-gradient(
+      rgba(201, 184, 90, 0.144)
+    ), url(imagenes/fondo.jpg) center;
     background-size:cover; 
     min-height: 100vh; 
     width: 100%; 
@@ -138,24 +141,24 @@ header{
 
 
 #header-2{
-    background-image: url(imagenes/historia-programacion.jpg);
-width: 100%;
+    background: 
+    linear-gradient(
+      rgba(201, 184, 90, 0.192)
+    ), url(imagenes/historia-programacion.jpg) center;
+    width: 100%;
     position: relative;
     height: 70vh;
+    opacity: 1;
 }
 #header-3{
-    background-image: url(imagenes/img2.jpg);
+    background: 
+    linear-gradient(
+      rgba(201, 184, 90, 0.144)
+    ), url(imagenes/img2.jpg) center;
     position: relative;
     height: 70vh;
 }
-.fondo-azul{
-    background: #4f5146b3;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-}
+
 .espacio-titulo{
     padding: 40px 10px;
     transition: color 3s;
@@ -164,20 +167,24 @@ h1{
     font-weight: 400;
     font-size: 4rem;
     color: #eeeeee;
-    text-shadow: 2px 2px #808080, 6px 6px black;
+    text-shadow: 1px 1px #808080, 3px 3px black;
 }
 h2{
-    text-shadow: 1px 1px white,2px 2px gray ;
-    font-size:2.5rem; 
+    font-size: 2.5rem; 
     font-weight: 500;
     text-align: center;
-    color: #2f3645
+    color: #2f3645;
 }
 .titulo-blanco{
  text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
 }
 
-.cont-padre{
+.contenedor-padre{
     margin: 70px 0px;
     width: 100%;
     display: flex;
@@ -185,9 +192,9 @@ h2{
     gap: 20px;
 }
 
-.card{
- width: 350px;
- height: 400px;
+.tarjeta{
+ width: 400px;
+ height: 425px;
  gap: 10px;
  background-color: #FFFFFF;
  display: flex;
@@ -202,13 +209,13 @@ h2{
   will-change: transform, opacity;
 }
 
-.card:hover {
+.tarjeta:hover {
     background: #e1e1e1;
    border:#000000 solid 0.1px;
    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.img-card{
+.img-tarjeta{
  width: 100%;
  margin: 0px;
  height: 250px;
@@ -216,29 +223,48 @@ h2{
 
 }
 
-.desc-card{
+.desc-tarjeta{
 width: 90%;
 text-align: center;
 height: 30px;
 color:#181D31;
 }
 
-.card.from-left { transform: translateX(-450px) translateY(40px); }
-.card.from-right { transform: translateX(450px) translateY(40px); }
+.tarjeta.from-left { transform: translateX(-450px) translateY(40px); }
+.tarjeta.from-right { transform: translateX(450px) translateY(40px); }
 
-.card.hide-left,
-.card.hide-right {
+.tarjeta.hide-left,
+.tarjeta.hide-right {
   transition: opacity 1s ease, transform 1s ease;
 }
 
 
 
 
+.tarjeta.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.tarjeta.hide-left {
+  opacity: 0;
+  transform: translateX(-450px) translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.tarjeta.hide-right {
+  opacity: 0;
+  transform: translateX(450px) translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+
 
 
 .boton-ver{
     padding: 10px ;
-   background-color: #2f3645;
+   background-color: #585c64;
    color: #ffffff;
    text-align: center;
     text-decoration: none;
@@ -253,14 +279,11 @@ color:#181D31;
 
 }
 
-.boton-ver:active{
-    box-shadow: 0px 0px darkgray;
-    transform: translate(3px, 2px);
-}
 
 
 
-/* ----------     footer      ------------*/
+
+
 .logo{
     height: 70px;
 }
@@ -273,7 +296,7 @@ footer{
     color: #f5f5f5;
 }
 
-.footer-left{
+.footer-logo{
  display: flex;
  justify-content: space-between;
  width:250px;
@@ -282,7 +305,7 @@ footer{
  
 }
 
-.titulo-foot{
+.titulo-footer{
     font-size: 16px;
 }
 
@@ -297,46 +320,132 @@ footer{
     
 }
 
-.cont-historia{
+
+
+#barraProgreso{
+    appearance: none;
+    height: 8px;
+    background: #555;
+    border-radius: 5px;
+    outline: none;
+} 
+
+.contenedor-historia{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 80px;
+    padding: 80px 20px;
+    gap: 150px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
-.card-hist{
+
+.tarjeta-historia{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding:80px 50px;
-    gap: 20px;    
-    perspective: 800px;
-    perspective-origin: top;
-    
-}
-.card-text-section{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
-    visibility:hidden
-    
-}
-.card-hist>img{
-    width: 50%;
-    visibility: hidden;
+    padding: 60px 40px;
+    gap: 60px;
+    width: 100%;
+    perspective: 1500px;
+    perspective-origin: center;
 }
 
-#cardHist2>.card-text-section{
-    visibility:hidden
+.tarjeta-historia img{
+    width: 45%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(-200px) translateZ(-100px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.text-hist{
+
+.tarjeta-historia[data-direccion="derecha"] img {
+    transform: translateX(200px) translateZ(-100px);
+}
+
+.tarjeta-historia.visible img {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+}
+
+.seccion-texto-tarjeta{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 55%;
+    opacity: 0;
+    transform: translateX(200px) rotateY(-45deg) translateZ(-150px);
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-historia[data-direccion="derecha"] .seccion-texto-tarjeta {
+    transform: translateX(-200px) rotateY(45deg) translateZ(-150px);
+}
+
+.tarjeta-historia.visible .seccion-texto-tarjeta {
+    opacity: 1;
+    transform: translateX(0) rotateY(0) translateZ(0);
+}
+
+.titulo-tarjeta{
+    font-size: 2.2rem;
+    font-weight: 600;
     color: #2f3645;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    line-height: 1.3;
+    margin-bottom: 10px;
 }
 
-/* ---------- video ------------*/
+.texto-historia{
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.texto-historia strong {
+    color: #2f3645;
+    font-weight: 600;
+}
+
+.contenedor-textos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.tarjeta-historia.visible img {
+    transition-delay: 0s;
+}
+
+.tarjeta-historia.visible .seccion-texto-tarjeta {
+    transition-delay: 0.2s;
+}
+
+
+.tarjeta-historia:hover img {
+    transform: translateX(0) translateZ(20px) scale(1.02);
+}
+
+.tarjeta-historia:hover .seccion-texto-tarjeta {
+    transform: translateX(0) rotateY(0) translateZ(20px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+
 .contenedorVideo{
     display: flex;
     flex-direction: column;
@@ -348,7 +457,6 @@ footer{
 }
 .barra{
     background-color:#2f3645;
-    border-radius: 10px;
     padding: 20px 5px;
     display: flex;
     justify-content: space-between;
@@ -357,31 +465,39 @@ footer{
 .botonera{
     display: flex;
     gap: 20px;
+    
 }
 .container{
-    padding: 5px;
+    padding: 6px;
     background-color: #2f3645;
-    width: 70%;
+    width: 40%;
+    border-radius: 16px;
 }
 
 #play,#pause{
-   width: 80px;
+   width: 70px;
+   margin-left: 10px;
+   border-radius: 6px;
+   box-shadow: #000000;
+      
 }
 
 
 .botonesVideo:active{
-    box-shadow: 0px 0px darkgray;
-    transform: translate(3px, 2px);
-}
-#showTime{
-   
-    padding-right: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-   
+    transform: translate(4px, 4px);
 
 }
-/* ----------     hoja productos      ------------*/
+#showTime{
+    padding-right: 14px;
+    color: white;
+}
+
+video {
+  border-radius: 12px 12px 0 0;
+}
+
+
+
 
 
 .card-prod{
@@ -397,7 +513,7 @@ footer{
 }
 
 
-/* ----------     ponerAPrueba     ------------*/
+
 .juego{
     display: flex;
     flex-direction: column;
@@ -473,7 +589,7 @@ footer{
     font-weight: 300;
 }
 
-/* Animaciones de aparición (mantienen tu estilo original) */
+
 @keyframes aparecerDerecha {
   from {
     transform: translateX(500px);
@@ -548,7 +664,7 @@ footer{
   }
 }
 
-/* Nuevo: animación de desaparición suave */
+
 @keyframes desaparecer {
   from {
     opacity: 1;
@@ -559,23 +675,3 @@ footer{
     transform: scale(0.95) translateY(30px);
   }
 }
-
-/* Estado base para cards (se ven suaves incluso sin animar) */
-.card {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* Cuando están visibles (activadas desde JS) */
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.card:hover {
-    transform: scale(1.1)
-}
-
-
-

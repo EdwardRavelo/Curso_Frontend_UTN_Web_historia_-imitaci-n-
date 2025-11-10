@@ -1,121 +1,121 @@
-let menu= document.querySelector('.menu');
-let flag=false;
-let contador=0;
-
-const navChange=()=>{
+/* Nav scroll */
+function navChange() {
+    let nav = document.querySelector("nav");
     
-  
-    if(window.innerHeight*0.1 < window.scrollY  ){
-        document.querySelector("nav").classList.add("fondoNav")
-        
-    }else{
-    document.querySelector("nav").classList.remove("fondoNav")
-        
-       
+    if (window.scrollY > 100) {
+        nav.classList.add("fondoNav");
+    } else {
+        nav.classList.remove("fondoNav");
     }
-} 
-function iniciar(){
-    var imagenes=document.querySelectorAll('.imagenes');
-     soltar=document.getElementById('cajasoltar');  
-     soltar2  =document.getElementById('cajasoltar2'); 
-     soltar3 = document.getElementById('cajasoltar3'); 
-
-    for(var i=0; i<imagenes.length; i++){
-        imagenes[i].addEventListener('dragstart', arrastrado, false);
-        
-    }
-
-    soltar.addEventListener('dragenter', function(e){
-    e.preventDefault(); }, false);
-    soltar.addEventListener('dragover', function(e){
-    e.preventDefault(); }, false)
-      
-    ;
-    soltar.addEventListener('drop', soltado, false);
-
-
-    soltar2.addEventListener('dragenter', function(e){
-        e.preventDefault(); }, false);
-    soltar2.addEventListener('dragover', function(e){
-    e.preventDefault(); }, false);
-    soltar2.addEventListener('drop', soltado, false);
-
-
-    soltar3.addEventListener('dragenter', function(e){
-        e.preventDefault(); }, false);
-    soltar3.addEventListener('dragover', function(e){
-    e.preventDefault(); }, false);
-    soltar3.addEventListener('drop', soltado, false);
-
-}
-function arrastrado(e){
-    elemento=e.target;
-    e.dataTransfer.setData('Text', elemento.getAttribute('id'));
 }
 
-async function soltado(e){
-    e.preventDefault();
-    console.log(e)
-    let id=e.dataTransfer.getData('Text');
-    
-    let imagen=document.getElementById(id);
-    console.log(imagen)
-    imagen.style.display= 'none';
-    let contenedor;
-    if(e.target.tagName ==="P"){
-        contenedor=e.target.parentNode;
-    }else{
-        contenedor= e.target;
-    }
-    contenedor.innerHTML='<img src="'+imagen.src+'" height="100%" width="100%">';
-    contador++
-    
 
-    if(contador ==3){
-        let imagen1=document.querySelector("#cajasoltar>img").getAttribute("src").split("/").includes("Rompe1.png")
-        let imagen2=document.querySelector("#cajasoltar2>img").getAttribute("src").split("/").includes("rompe2.png")
-        let imagen3=document.querySelector("#cajasoltar3>img").getAttribute("src").split("/").includes("Rompe3.png")
-        document.querySelector(".cajas").style.gap="0px";
-        let cajitas=document.querySelectorAll(".caja")
 
-        document.querySelector(".cajas").style="transform:scale(1.5);gap:0;border:0";
-        for(let caja of cajitas){
-            caja.style.border="0";
-        }
-        
-        if(imagen1&&imagen2&&imagen3){
-            setTimeout(()=>{
-                document.querySelector(".cajas").style="transform:scale(1);gap:0";
+let contador = 0;
 
-            },3000)
-            setTimeout(()=>{ 
-                document.querySelector(".espacio-titulo").innerHTML=`<span>Felicitaciones!!<br>Puzzle correctamente resuelto`;
-            document.querySelector(".espacio-titulo").style="animation:feliz 3s forwards;position:relative";
-             document.querySelector(".cajas").style="opacity:0;gap:0";
-        },6000)
-       
-         
-        }else{
-            for(let caja of cajitas){
-                caja.style.border=0;
-                caja.classList.remove("cajaHover")
-                
-            }
-            setTimeout(()=>{
-                for(let caja of cajitas){
-                    caja.style.opacity="0.7";
-                }
-                document.querySelector(".espacio-titulo").innerHTML=`Lo sentimos ,Puzzle no resuelto.<br/>Prueba otra vez <img width=50px src="./assets/icons/icons8-double-down-80.png"/> `
-                document.querySelector(".espacio-titulo").style="animation:feliz 3s forwards; z-index:3;position:relative;color:white; text-shadow: 2px 2px #808080, 6px 6px black";
-                document.querySelector(".cajas").style="background-color:#000000;transform:scale(1);gap:0"
-            },5000)
-
-        }
-    }
-
+function arrastrarImagen(evento) {
+    let imagenArrastrada = evento.target;
+    evento.dataTransfer.setData('imagen', imagenArrastrada.id);
 }
+
+function soltarImagen(evento) {
+    evento.preventDefault();
+    
+    let idImagen = evento.dataTransfer.getData('imagen');
+    let imagen = document.getElementById(idImagen);
+    
+    imagen.style.display = 'none';
+    
+    let caja;
+    if (evento.target.tagName === "P") {
+        caja = evento.target.parentNode;
+    } else {
+        caja = evento.target;
+    }
+    
+    //Insertar imagen 
+    caja.innerHTML = '<img src="' + imagen.src + '" width="100%" height="100%">';
+    //sumar contador
+    contador = contador + 1;
+    
+    if (contador === 3) {
+        revisarRespuesta();
+    }
+}
+
+// Verificación
+function revisarRespuesta() {
+    let imagenEnCaja1 = document.querySelector("#cajasoltar img").src;
+    let imagenEnCaja2 = document.querySelector("#cajasoltar2 img").src;
+    let imagenEnCaja3 = document.querySelector("#cajasoltar3 img").src;
+    
+    let caja1Correcta = imagenEnCaja1.includes("Rompe1.png");
+    let caja2Correcta = imagenEnCaja2.includes("rompe2.png");
+    let caja3Correcta = imagenEnCaja3.includes("Rompe3.png");
+    
+    // ganar
+    let gano = caja1Correcta && caja2Correcta && caja3Correcta;
+    let contenedorCajas = document.querySelector(".cajas");
+    let titulo = document.querySelector(".espacio-titulo");
+    
+    //animación 
+    contenedorCajas.style.transform = "scale(1.5)";
+    contenedorCajas.style.gap = "0";
+    
+    // Verificación ganó o perdió
+    if (gano === true) {
+        // ===== GANÓ =====
+        
+        // volver  a scale normal 
+        setTimeout(function() {
+            contenedorCajas.style.transform = "scale(1)";
+        }, 3000);
+        
+        // Felicitaciones
+        setTimeout(function() {
+            titulo.innerHTML = '¡Felicitaciones!<br>Puzzle correctamente resuelto';
+            titulo.style.color = "gold";
+            titulo.style.fontSize = "3rem";
+            contenedorCajas.style.opacity = "0";
+        }, 6000);
+        
+    } else {
+
+        // Perdió
+        
+        // Mensaje de error
+        setTimeout(function() {
+            titulo.innerHTML = 'Lo sentimos, Puzzle no resuelto.<br/>Prueba otra vez :(';
+            titulo.style.color = "black";
+            contenedorCajas.style.backgroundColor = "#000000";
+            contenedorCajas.style.transform = "scale(1)";
+            contenedorCajas.style.opacity = "0.7";
+        }, 5000);
+    }
+}
+
+// Reiniciar el juego
 function reinicio() {
-    window.location.reload();
+    location.reload();
 }
-iniciar()
-//window.addEventListener('load', iniciar, false);
+
+// Recaarga la página
+window.onload = function() {
+    
+    let todasLasImagenes = document.querySelectorAll('.imagenes');
+    
+    for (let i = 0; i < todasLasImagenes.length; i++) {
+        todasLasImagenes[i].draggable = true;
+        todasLasImagenes[i].ondragstart = arrastrarImagen;
+    }
+    
+    let todasLasCajas = document.querySelectorAll('.caja');
+    
+    for (let i = 0; i < todasLasCajas.length; i++) {
+        todasLasCajas[i].ondragover = function(evento) {
+            evento.preventDefault();
+        };
+        
+        todasLasCajas[i].ondrop = soltarImagen;
+    }
+};
